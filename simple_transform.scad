@@ -10,13 +10,13 @@ module mv_x(x_val)
 
 module mv_y(y_val)
 {
-  translate([y_val, 0, 0])
+  translate([0, y_val, 0])
     children() ;
 }
 
 module mv_z(z_val)
 {
-  translate([z_val, 0, 0])
+  translate([0, 0, z_val])
     children() ;
 }
 
@@ -45,9 +45,24 @@ module transform(pos_vec=[0,0,0], rot_vec=[0,0,0])
       children() ;
 }
 
-module flip(dir, axis)
+module flip(dir=[0,0,0], axis=[0,0,0])
 {
   mirror([dir[1], dir[0], dir[2]])
     translate([-axis[1], -axis[0], -axis[2]])
       children() ;
+}
+
+
+// short hand functions
+
+module tran(distance)
+{
+  translate(distance)
+    children() ;
+}
+
+module rot(rotates)
+{
+  rotate(rotates)
+    children() ;
 }
